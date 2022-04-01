@@ -1,21 +1,4 @@
-// Import the leaflet package
-var L = require('leaflet');
-
-// Creates a leaflet map binded to an html <div> with id "map"
-// setView will set the initial map view to the location at coordinates
-// 13 represents the initial zoom level with higher values being more zoomed in
-var map = L.map('map').setView([43.659752, -79.378161], 20);
-
-// Adds the basemap tiles to your web map
-// Additional providers are available at: https://leaflet-extras.github.io/leaflet-providers/preview/
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
-	subdomains: 'abcd',
-	maxZoom: 21
-}).addTo(map);
-
-// Adds a popup marker to the webmap for GGL address
-var oceanPoly = L.polygon([
+exports.oceanBorderCoords = [
   [56.5,198],
   [53.5,190.5],
   [52,191.25],
@@ -104,14 +87,14 @@ var oceanPoly = L.polygon([
   [49,150],
   [50,160],
   [63,185]
-], {color:'red'}).addTo(map);
+];
 
-var primeMeridian = L.polyline([
+exports.primeMeridian = [
   [-90,0],
   [90,0]
-], {color:'purple'}).addTo(map);
+];
 
-var equator = L.polyline([
+exports.equator = [
   [0,-360],
   [0,360]
-],{color:'green'}).addTo(map);
+];
