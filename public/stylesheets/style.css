@@ -1,0 +1,13 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+#map {
+  margin: 2.5vh auto;
+  height: 95vh;
+  width: 95vw;
+}
