@@ -4,7 +4,7 @@ var L = require('leaflet');
 // Creates a leaflet map binded to an html <div> with id "map"
 // setView will set the initial map view to the location at coordinates
 // 13 represents the initial zoom level with higher values being more zoomed in
-var map = L.map('map').setView([43.659752, -79.378161], 20);
+var map = L.map('map').setView([43.659752, -79.378161], 2);
 
 // Adds the basemap tiles to your web map
 // Additional providers are available at: https://leaflet-extras.github.io/leaflet-providers/preview/
@@ -14,48 +14,8 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
 	maxZoom: 21
 }).addTo(map);
 
-// Adds a popup marker to the webmap for GGL address
-var oceanPoly = L.polygon([
-  [56.5,198],
-  [53.5,190.5],
-  [52,191.25],
-  [59.5,213],
-  [58,222],
-  [53,226],
-  [48,234],
-  [40,234],
-  [17,252],
-  [4,278],
-  [-5,277],
-  [-20,286],
-  [-47,282.5],
-  [-53,283],
-  [-57,290],
-  [-55,298],
-  [-48,296],
-  [-29,312.5],
-  [-23,320],
-  [-10,327],
-  [-5,326],
-  [6,310],
-  [19,296],
-  [26,282],
-  [31,280],
-  [35,285],
-  [40,287],
-  [41,290],
-  [43,295],
-  [46,308],
-  [59,317],
-  [70,343],
-  [81.5,352],
-  [84,330],
-  [83.5,283],
-  [76.5,235.5],
-  [72,232],
-  [70,223],
-  [72,203],
-  [72,185],
+const eurasiaCoords = ([
+  [72,180],
   [76.5,142],
   [78,104],
   [77.5,68],
@@ -103,8 +63,55 @@ var oceanPoly = L.polygon([
   [35,145],
   [49,150],
   [50,160],
-  [63,185]
-], {color:'red'}).addTo(map);
+  [63,180]
+]);
+
+const americasCoords = [
+  [63,-180],
+  [56.5,-162],
+  [53.5,-169.5],
+  [52,-168.75],
+  [59.5,-147],
+  [58,-138],
+  [53,-134],
+  [48,-126],
+  [40,-126],
+  [17,-108],
+  [4,-82],
+  [-5,-83],
+  [-20,-74],
+  [-47,-77.5],
+  [-53,-77],
+  [-57,-70],
+  [-55,-62],
+  [-48,-64],
+  [-29,-47.5],
+  [-23,-40],
+  [-10,-33],
+  [-5,-34],
+  [6,-50],
+  [19,-64],
+  [26,-78],
+  [31,-80],
+  [35,-75],
+  [40,-73],
+  [41,-70],
+  [43,-65],
+  [46,-52],
+  [59,-43],
+  [70,-17],
+  [81.5,-8],
+  [84,-30],
+  [83.5,-77],
+  [76.5,-125.5],
+  [72,-128],
+  [70,-137],
+  [72,-157],
+  [72,-180]
+]
+
+var eurasiaPoly = L.polygon(eurasiaCoords, {color:'red'}).addTo(map);
+var americasPoly = L.polygon(americasCoords, {color:'red'}).addTo(map);
 
 var primeMeridian = L.polyline([
   [-90,0],
@@ -115,3 +122,11 @@ var equator = L.polyline([
   [0,-360],
   [0,360]
 ],{color:'green'}).addTo(map);
+
+var border = L.polyline([
+  [-90,-180],
+  [90,-180],
+  [90,180],
+  [-90,180],
+  [-90,-180]
+], {color:'white'}).addTo(map);
