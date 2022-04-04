@@ -4,7 +4,7 @@ A web applet to serve a static page with a leaflet.js map displaying coordinates
 
 ### Currently in development
 
-##### Roadmap
+#### Roadmap
 
 ###### Incomplete
   - Polygon the oceans
