@@ -23,8 +23,7 @@ A web applet to serve a static page with a leaflet.js map displaying coordinates
   - Set up polygons to surround continents
   - Find way to determine if point is in given polygons    
    [ ] Mathematical function using center?    
-   cons: complex polygons will have centers that do not have straight lines to all borders.    
+   *cons:* complex polygons will have centers that do not have straight lines to all borders.    
    [ ] Draw line from given point to right and count intersections with border. Odd means it is in polygon, even means it is out.    
-   cons:    
-   could not find how to determine intersections with perimeter through base leaflet before finding the plugin    
+   *cons:* could not find how to determine intersections with perimeter through base leaflet before finding the plugin    
    [x] @mapbox/leaflet-pip plugin to compute if point is in polygons    
