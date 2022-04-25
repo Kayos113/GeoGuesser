@@ -33,22 +33,31 @@ var border = L.polyline([
   [-90,-180]
 ], {color:'white'}).addTo(map);
 
+// Random point generation
+
+	var randX = Math.floor(Math.random()*360)-180;
+	var randY = Math.floor(Math.random()*180)-90;
+	var randPoint = L.point(randX, randY);
+	console.log("randPoint: " + randX + " " +  randY);
+
+
+// Click function and popup
+
 var popup = L.popup();
-var data = continentPoly.toGeoJSON()
-var gjLayer = L.geoJson(data);
 
 function onClick(evt) {
 	console.log('Clicked');
-	var results = leafletPip.pointInLayer(evt.latlng, gjLayer);
-	console.log('results: ' + results);
-	var message;
-	if(results && results.length) {
-		message = "Point is in continent polygon.";
-	} else {
-		message = "Point is not in continent polygon.";
-	}
-	console.log(message);
-		popup
+
+	evtLatLng = evt.latlng;
+	clickX = evtLatLng.lng;
+	clickY = evtLatLng.lat;
+
+	var distance = Math.abs( Math.pow((randX - clickX), 2) + Math.pow((randY - clickY), 2) );
+	console.log(distance);
+
+
+	var message = "Map Clicked."
+	popup
 		.setLatLng(evt.latlng)
     .setContent(message + " (Coords: " + evt.latlng.toString() + ")")
     .openOn(map);
