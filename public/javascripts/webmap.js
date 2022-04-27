@@ -14514,7 +14514,7 @@ var leafletPip = require('@mapbox/leaflet-pip');
 
 // Creates a leaflet map binded to an html <div> with id "map"
 // setView will set the initial map view to the location at coordinates
-// 13 represents the initial zoom level with higher values being more zoomed in
+// 2 represents the initial zoom level with higher values being more zoomed in
 var map = L.map('map').setView([43.659752, -79.378161], 2);
 
 // Adds the basemap tiles to your web map
@@ -14545,8 +14545,8 @@ var border = L.polyline([
 
 // Random point generation
 
-	var randX = Math.floor(Math.random()*360)-180;
-	var randY = Math.floor(Math.random()*180)-90;
+	var randX = -117.919044//Math.floor(Math.random()*360)-180;
+	var randY = 33.809111//Math.floor(Math.random()*180)-90;
 	var randPoint = L.point(randX, randY);
 	console.log("randPoint: " + randX + " " +  randY);
 
@@ -14563,13 +14563,14 @@ function onClick(evt) {
 	clickY = evtLatLng.lat;
 
 	var distance = Math.abs( Math.pow((randX - clickX), 2) + Math.pow((randY - clickY), 2) );
+	var displayDistance = (Math.floor( distance * 1000000 ) / 1000000);
 	console.log(distance);
 
 
 	var message = "Map Clicked."
 	popup
 		.setLatLng(evt.latlng)
-    .setContent(message + " (Coords: " + evt.latlng.toString() + ")")
+    .setContent(message + " (Distance to secret point: " + displayDistance + ")")
     .openOn(map);
 }
 map.on('click', onClick);
