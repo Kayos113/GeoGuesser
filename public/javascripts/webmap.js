@@ -1,4 +1,65 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
+module.exports={
+  "locations": [
+    {
+      "title": "Disneyland Esplanade",
+      "lat": 33.809111,
+      "lng": -117.919044
+    },
+    {
+      "title": "Disneyworld Epcot Globe",
+      "lat": 28.375336,
+      "lng": -81.549402
+    },
+    {
+      "title": "White House",
+      "lat": 38.895038,
+      "lng": -77.036522
+    },
+    {
+      "title": "Empire State Building",
+      "lat": 40.748109,
+      "lng": -73.985839
+    },
+    {
+      "title": "Eiffel Tower",
+      "lat": 48.858481,
+      "lng": 2.293940
+    },
+    {
+      "title": "Coloseum",
+      "lat": 41.890768,
+      "lng": 12.492410
+    },
+    {
+      "title": "Great Pyramid of Giza",
+      "lat": 29.979411,
+      "lng": 31.134371
+    },
+    {
+      "title": "Mount Everest",
+      "lat": 27.988139,
+      "lng": 86.916220
+    },
+    {
+      "title": "Mount Fuji",
+      "lat": 35.360642,
+      "lng": 138.718609
+    },
+    {
+      "title": "Sydney Opera House",
+      "lat": 33.856780,
+      "lng": 151.213108
+    },
+    {
+      "title": "Old Faithful",
+      "lat": 44.4605,
+      "lng": -110.828484
+    }
+  ]
+}
+
+},{}],2:[function(require,module,exports){
 'use strict';
 var gju = require('geojson-utils');
 
@@ -33,7 +94,7 @@ var leafletPip = {
 
 module.exports = leafletPip;
 
-},{"geojson-utils":2}],2:[function(require,module,exports){
+},{"geojson-utils":3}],3:[function(require,module,exports){
 (function () {
   var gju = this.gju = {};
 
@@ -443,7 +504,7 @@ module.exports = leafletPip;
 
 })();
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 /* @preserve
  * Leaflet 1.7.1, a JS library for interactive maps. http://leafletjs.com
  * (c) 2010-2019 Vladimir Agafonkin, (c) 2010-2011 CloudMade
@@ -14507,10 +14568,12 @@ module.exports = leafletPip;
 })));
 
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 // Import the leaflet package
 var L = require('leaflet');
 var leafletPip = require('@mapbox/leaflet-pip');
+var locations = require('./locations.json');
+console.log(locations.length);
 
 // Creates a leaflet map binded to an html <div> with id "map"
 // setView will set the initial map view to the location at coordinates
@@ -14544,12 +14607,22 @@ var border = L.polyline([
 ], {color:'white'}).addTo(map);
 
 // Random point generation
+	//
+	// var randX = -117.919044//Math.floor(Math.random()*360)-180;
+	// var randY = 33.809111//Math.floor(Math.random()*180)-90;
+	// var randPoint = L.point(randX, randY);
+	// console.log("randPoint: " + randX + " " +  randY);
 
-	var randX = -117.919044//Math.floor(Math.random()*360)-180;
-	var randY = 33.809111//Math.floor(Math.random()*180)-90;
+// Random Location Selection
+  let rand = locations.length;
+	console.log(rand);
+	let index = Math.floor(rand);
+	console.log("Random number: " + index);
+	let randLocation = locations[index];
+	console.log(randLocation.title);
+	let randX = randLocation.lng;
+	let randY = randLocation.lat;
 	var randPoint = L.point(randX, randY);
-	console.log("randPoint: " + randX + " " +  randY);
-
 
 // Click function and popup
 
@@ -14575,4 +14648,4 @@ function onClick(evt) {
 }
 map.on('click', onClick);
 
-},{"@mapbox/leaflet-pip":1,"leaflet":3}]},{},[4]);
+},{"./locations.json":1,"@mapbox/leaflet-pip":2,"leaflet":4}]},{},[5]);

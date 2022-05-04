@@ -1,6 +1,8 @@
 // Import the leaflet package
 var L = require('leaflet');
 var leafletPip = require('@mapbox/leaflet-pip');
+var locations = require('./locations.js');
+console.log(locations);
 
 // Creates a leaflet map binded to an html <div> with id "map"
 // setView will set the initial map view to the location at coordinates
@@ -34,12 +36,22 @@ var border = L.polyline([
 ], {color:'white'}).addTo(map);
 
 // Random point generation
+	//
+	// var randX = -117.919044//Math.floor(Math.random()*360)-180;
+	// var randY = 33.809111//Math.floor(Math.random()*180)-90;
+	// var randPoint = L.point(randX, randY);
+	// console.log("randPoint: " + randX + " " +  randY);
 
-	var randX = -117.919044//Math.floor(Math.random()*360)-180;
-	var randY = 33.809111//Math.floor(Math.random()*180)-90;
+// Random Location Selection
+  let rand = locations.length;
+	console.log(rand);
+	let index = Math.floor(rand);
+	console.log("Random number: " + index);
+	let randLocation = locations[index];
+	console.log(randLocation.title);
+	let randX = randLocation.lng;
+	let randY = randLocation.lat;
 	var randPoint = L.point(randX, randY);
-	console.log("randPoint: " + randX + " " +  randY);
-
 
 // Click function and popup
 
